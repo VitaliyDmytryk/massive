@@ -1,0 +1,54 @@
+
+class ArrayStack:
+    def __init__(self, capacity=10):
+        # Ініціалізація масиву фіксованого розміру та вказівника вершини top = -1
+        self.capacity = capacity
+        self.items = [None] * capacity
+        self.top = -1
+
+    def push(self, item):
+        """Вставляє об'єкт на вершину стеку."""
+        if self.top >= self.capacity - 1:
+            raise OverflowError("Переповнення стека (Stack Overflow)")
+        self.top += 1
+        self.items[self.top] = item
+
+    def pop(self):
+        """Повертає елемент з вершини стеку та видаляє його."""
+        if self.top == -1:
+            raise IndexError("Стек порожній")
+        item = self.items[self.top]
+        self.items[self.top] = None
+        self.top -= 1
+        return item
+
+    def peek(self):
+        """Повертає елемент з вершини стеку без видалення."""
+        if self.top == -1:
+            raise IndexError("Стек порожній")
+        return self.items[self.top]
+
+    def clear(self):
+        """Видаляє всі елементи зі стеку."""
+        self.items = [None] * self.capacity
+        self.top = -1
+
+    def count(self):
+        """Повертає кількість елементів стеку."""
+        return self.top + 1
+
+    def size(self):
+        """Повертає кількість елементів у стеку."""
+        return self.top + 1
+
+    def toString(self):
+        """Виводить усі елементи стеку, не видаляючи їх."""
+        if self.top == -1:
+            return "Стек порожній []"
+        elements = [str(self.items[i]) for i in range(self.top, -1, -1)]
+        return "Вершина -> [" + " -> ".join(elements) + "]"
+
+
+
+
+
